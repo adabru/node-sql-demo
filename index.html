@@ -1,0 +1,16 @@
+<h1>Favourite Fruits</h1>
+<div></div>
+<input/>
+<button>add fruit</button>
+<script>
+  refresh = _ =>
+    fetch('fruits').then(res => res.json()).then(fruits => {
+      document.querySelector('div').innerHTML =
+        fruits.map(fruit => `<h3>${fruit}</h3>`).join('\n')
+    })
+
+  document.querySelector('button').onclick = _ =>
+    fetch('fruits/' + document.querySelector('input').value).then(refresh)
+
+  refresh()
+</script>
